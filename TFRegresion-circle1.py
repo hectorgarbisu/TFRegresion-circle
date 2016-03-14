@@ -5,7 +5,7 @@ from random import shuffle
 import random
 
 num_epochs = 100
-dataset_lenght = 100
+dataset_lenght = 200
 num_batches = dataset_lenght/2
 window_size = 40
 batch_size = 50
@@ -15,7 +15,7 @@ nW_hidden = 10
 # t = np.arange(0,20.0, 0.1)
 # data = np.sin(t)
 
-t = range(dataset_lenght)
+t = np.arange(0,4*np.pi,4*np.pi/dataset_lenght)
 xdata = np.cos(t)/2
 ydata = np.sin(t)/2
 #data = [np.sin(2*np.pi*i/100) for i in range(dataset_lenght)]
@@ -81,7 +81,6 @@ for epoch in range(num_epochs):
         ys = np.atleast_2d(ybatch)
         #print(xs)
         xs = xs.reshape([batch_size,window_size*2])
-        print xs
         sess.run(train, feed_dict={x: xs, y_: ys})
         #print sess.run(error_measure, feed_dict={x: xs, y_: ys})
     if (epoch % (num_epochs//10)) == 0:
